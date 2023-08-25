@@ -1,24 +1,39 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import './styles/style.scss';
+import handlebars from 'handlebars';
+import loginPage from './parials/login.js'
+import registerPage from './parials/register.js';
+import notFoundPage from './parials/404.js';
+import serverErrorPage from './parials/500.js';
+import chatPage from './parials/chat.js';
+import profilePage from './parials/profile.js';
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const routes = {
+  'login': loginPage,
+  'register': registerPage,
+  '404': notFoundPage,
+  '500': serverErrorPage,
+  'chat': chatPage,
+  'profile': profilePage
+};
 
-setupCounter(document.querySelector('#counter'))
+function handleRouting() {
+  // Использую queryParams так как netlify умееть только dist запускать у себя
+  // и соответственно маршруты другие нельзя в нем указать по примеру /register, /profile etc.
+  const queryParams = new URLSearchParams(window.location.search);
+  const page = queryParams.get('page');
+
+  const main = document.querySelector('#app');
+
+  const template = routes[page];
+
+  if (template) {
+    main.innerHTML = handlebars.compile(template)();
+  } else if(window.location.pathname === '/') {
+    main.innerHTML = handlebars.compile(loginPage)();
+  }else {
+    main.innerHTML = handlebars.compile(notFoundPage)();
+  }
+}
+
+window.addEventListener('load', handleRouting);
+window.addEventListener('popstate', handleRouting);
