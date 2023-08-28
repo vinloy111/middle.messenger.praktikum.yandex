@@ -28,7 +28,9 @@ function handleRouting() {
 
   if (template) {
     main.innerHTML = handlebars.compile(template)();
-  } else {
+  } else if(window.location.pathname === '/') {
+    main.innerHTML = handlebars.compile(loginPage)();
+  }else {
     main.innerHTML = handlebars.compile(notFoundPage)();
   }
 }
