@@ -1,8 +1,8 @@
 export default `
     <div class="register-container">
         <h2>Регистрация</h2>
-        <!--   Временный   method="get" пока не обрабатываем формы  -->
-        <form action="/chat" method="get">
+        <!-- Пока что тут нету перехода, так как обработку формы еще не делали -->
+        <form action="/?page=chat" method="post">
             <div class="input-container">
                 <div class="input-container__input">
                     <input type="text" id="first_name" name="first_name">
@@ -55,7 +55,7 @@ export default `
             <button type="submit">Зарегистрироваться</button>
         </form>
         <div class="login-link">
-            <a href="/" class="link">Войти</a>
+            <a href="/?page=login" class="link">Войти</a>
         </div>
     </div>
 `

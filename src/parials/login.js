@@ -2,17 +2,17 @@ export default `
     <nav>
         <ul>
             <li><a href="/" class="link">Login</a></li>
-            <li><a href="/register" class="link">Register</a></li>
-            <li><a href="/chat" class="link">Chat</a></li>
-            <li><a href="/profile" class="link">Profile</a></li>
-            <li><a href="/404" class="link">404</a></li>
-            <li><a href="/500" class="link">500</a></li>
+            <li><a href="/?page=register" class="link">Register</a></li>
+            <li><a href="/?page=chat" class="link">Chat</a></li>
+            <li><a href="/?page=profile" class="link">Profile</a></li>
+            <li><a href="/?page=404" class="link">404</a></li>
+            <li><a href="/?page=500" class="link">500</a></li>
         </ul>
     </nav>
     <div class="login-container">
         <h2>Вход</h2>
-        <!--   Временный   method="get" пока не обрабатываем формы  -->
-        <form action="/chat" method="get">
+        <!-- Пока что тут нету перехода, так как обработку формы еще не делали -->
+        <form action="/?page=chat" method="post">
             <div class="input-container">
                 <div class="input-container__input">
                     <input type="text" id="login" name="login">
@@ -31,7 +31,7 @@ export default `
             <button type="submit">Авторизоваться</button>
         </form>
         <div class="not-profile-link">
-            <a href="/register" class="link">Нет аккаунта?</a>
+            <a href="/?page=register" class="link">Нет аккаунта?</a>
         </div>
     </div>
 `

@@ -46,13 +46,13 @@ export default `
                 <div class="profile-form__actions">
                     <div class="profile-form__actions-container">
                         <div>
-                            <a href="/" class="link">Изменить данные</a>
+                            <a href="/?page=login" class="link">Изменить данные</a>
                         </div>
                         <div>
-                            <a href="/" class="link">Изменить пароль</a>
+                            <a href="/?page=login" class="link">Изменить пароль</a>
                         </div>
                         <div>
-                            <a href="/" class="link link_danger">Выйти</a>
+                            <a href="/?page=login" class="link link_danger">Выйти</a>
                         </div>
                     </div>
                 </div>

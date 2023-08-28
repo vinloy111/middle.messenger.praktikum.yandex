@@ -8,26 +8,26 @@ import chatPage from './parials/chat.js';
 import profilePage from './parials/profile.js';
 
 const routes = {
-  '/': loginPage,
-  '/register': registerPage,
-  '/404': notFoundPage,
-  '/500': serverErrorPage,
-  '/chat': chatPage,
-  '/profile': profilePage
+  'login': loginPage,
+  'register': registerPage,
+  '404': notFoundPage,
+  '500': serverErrorPage,
+  'chat': chatPage,
+  'profile': profilePage
 };
 
 function handleRouting() {
-  // Удаляем начальный слэш
-  const path = window.location.pathname;
+  // Использую queryParams так как netlify умееть только dist запускать у себя
+  // и соответственно маршруты другие нельзя в нем указать по примеру /register, /profile etc.
+  const queryParams = new URLSearchParams(window.location.search);
+  const page = queryParams.get('page');
+
   const main = document.querySelector('#app');
 
-  console.log(path, routes[path]);
+  const template = routes[page];
 
-  const page = routes[path];
-
-  if (page) {
-    main.innerHTML = handlebars.compile(page)();
-
+  if (template) {
+    main.innerHTML = handlebars.compile(template)();
   } else {
     main.innerHTML = handlebars.compile(notFoundPage)();
   }
