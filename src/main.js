@@ -1,11 +1,11 @@
 import './styles/style.scss';
 import handlebars from 'handlebars';
-import loginPage from './parials/login.js'
-import registerPage from './parials/register.js';
-import notFoundPage from './parials/404.js';
-import serverErrorPage from './parials/500.js';
-import chatPage from './parials/chat.js';
-import profilePage from './parials/profile.js';
+import loginPage from './pages/login.js'
+import registerPage from './pages/register.js';
+import notFoundPage from './pages/404.js';
+import serverErrorPage from './pages/500.js';
+import chatPage from './pages/chat.js';
+import profilePage from './pages/profile.js';
 
 const routes = {
   'login': loginPage,
