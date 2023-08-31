@@ -6,11 +6,11 @@
 ### !ВАЖНО ссылки работают только когда проект запущен в режиме разработки
 
 - 🚪 [Вход](https://illustrious-cupcake-1e1c8d.netlify.app/)
-- 📝 [Регистрация](https://illustrious-cupcake-1e1c8d.netlify.app/register)
-- 😱 [404 - Страница не найдена](https://illustrious-cupcake-1e1c8d.netlify.app/404)
-- 😓 [500 - Ошибка сервера](https://illustrious-cupcake-1e1c8d.netlify.app/500)
-- 💬 [Чат](https://illustrious-cupcake-1e1c8d.netlify.app/chat)
-- 🕺 [Профиль](https://illustrious-cupcake-1e1c8d.netlify.app/profile)
+- 📝 [Регистрация](https://illustrious-cupcake-1e1c8d.netlify.app/?page=register)
+- 😱 [404 - Страница не найдена](https://illustrious-cupcake-1e1c8d.netlify.app/?page=404)
+- 😓 [500 - Ошибка сервера](https://illustrious-cupcake-1e1c8d.netlify.app/?page=500)
+- 💬 [Чат](https://illustrious-cupcake-1e1c8d.netlify.app/?page=chat)
+- 🕺 [Профиль](https://illustrious-cupcake-1e1c8d.netlify.app/?page=profile)
 
 ## 🛠 Команды для запуска
 
