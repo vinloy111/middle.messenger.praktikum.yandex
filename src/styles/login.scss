@@ -1,0 +1,20 @@
+@import "palete";
+
+.login-container {
+  padding: 36px;
+  background-color: $color-white;
+  border-radius: 12px;
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.14);
+  min-width: 340px;
+
+
+  &__title {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .not-profile-link {
+    font-size: 11px;
+    text-align: center;
+  }
+}
