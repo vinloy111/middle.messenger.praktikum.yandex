@@ -4,16 +4,14 @@
   font-family: $font-family;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: $color-darK;
   background-color: $color-white;
-
   font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 * {
@@ -132,7 +130,7 @@ h2 {
   line-height: 20px;
 }
 
-@import "login";
-@import "register";
-@import "profile";
-@import "error";
+@import url("login");
+@import url("register");
+@import url("profile");
+@import url("error");

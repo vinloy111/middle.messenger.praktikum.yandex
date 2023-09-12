@@ -1,7 +1,7 @@
 import handlebars from 'handlebars';
 
 // language='handlebars'
-const template =  `
+const template = `
     <a href="{{href}}" class="link {{className}}"
         {{#if target}} target="{{target}}"{{/if}}
         {{#if rel}} rel="{{rel}}"{{/if}}>

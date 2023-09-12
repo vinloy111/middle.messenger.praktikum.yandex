@@ -1,21 +1,20 @@
 import handlebars from 'handlebars';
-import link from './link.js';
+import link from './link.ts';
 
 const template = `
   <div class="profile-form__actions">
       <div class="profile-form__actions-container">
           <div>
-              ${link({href: "/?page=login", text: "Изменить данные"})}
+              ${link({ href: '/?page=login', text: 'Изменить данные' })}
           </div>
           <div>
-              ${link({href: "/?page=login", text: "Изменить пароль"})}
+              ${link({ href: '/?page=login', text: 'Изменить пароль' })}
           </div>
           <div>
-              ${link({href: "/?page=login", text: "Выйти"})}
+              ${link({ href: '/?page=login', text: 'Выйти' })}
           </div>
       </div>
   </div>
-`
+`;
 
 export default handlebars.compile(template);
-

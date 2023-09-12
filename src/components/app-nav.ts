@@ -1,6 +1,6 @@
 import handlebars from 'handlebars';
 
-const template =  `
+const template = `
   <nav>
     <ul>
         {{#each links}}
@@ -10,6 +10,6 @@ const template =  `
         {{/each}}
     </ul>
   </nav>
-`
+`;
 
 export default handlebars.compile(template);

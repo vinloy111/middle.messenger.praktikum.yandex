@@ -1,8 +1,8 @@
 import handlebars from 'handlebars';
 
 // language='handlebars'
-const template =  `
-    <button 
+const template = `
+    <button
         {{#if type}} type="{{type}}"{{/if}}
     >{{ label }}</button>
 `;

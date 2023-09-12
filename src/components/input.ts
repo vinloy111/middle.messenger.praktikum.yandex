@@ -11,6 +11,6 @@ const template = `
         <div class="input-container__validation">{{ error }}</div>
     {{/if}}
   </div>
-`
+`;
 
 export default handlebars.compile(template);
