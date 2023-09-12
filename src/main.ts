@@ -1,11 +1,11 @@
 import './styles/style.scss';
 import handlebars from 'handlebars';
-import loginPage from './pages/login.ts';
-import registerPage from './pages/register.ts';
-import notFoundPage from './pages/404.ts';
-import serverErrorPage from './pages/500.ts';
-import chatPage from './pages/chat.ts';
-import profilePage from './pages/profile.ts';
+import loginPage from './pages/login/login.ts';
+import registerPage from './pages/register/register.ts';
+import notFoundPage from './pages/404/404.ts';
+import serverErrorPage from './pages/500/500.ts';
+import chatPage from './pages/chat/chat.ts';
+import profilePage from './pages/profile/profile.ts';
 
 const routes = {
   login: loginPage,

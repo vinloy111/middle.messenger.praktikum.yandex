@@ -1,4 +1,4 @@
-import link from '../components/link.ts';
+import link from '../../components/link/link.ts';
 
 export default `
     <div class="error">

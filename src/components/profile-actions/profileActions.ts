@@ -1,5 +1,5 @@
 import handlebars from 'handlebars';
-import link from './link.ts';
+import link from '../link/link.ts';
 
 const template = `
   <div class="profile-form__actions">

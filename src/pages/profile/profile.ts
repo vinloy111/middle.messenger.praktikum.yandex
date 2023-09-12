@@ -1,7 +1,7 @@
-import returnButton from '../components/returnButton.ts';
-import profileHeader from '../components/profileHeader.ts';
-import mainInfo from '../components/profileMainInfo.ts';
-import actions from '../components/profileActions.ts';
+import returnButton from '../../components/return-button/returnButton.ts';
+import profileHeader from '../../components/profile-header/profileHeader.ts';
+import mainInfo from '../../components/profile-main-info/profileMainInfo.ts';
+import actions from '../../components/profile-actions/profileActions.ts';
 
 const mainInfoOptions = [
   { label: 'Почта', value: 'pochta@yandex.ru' },

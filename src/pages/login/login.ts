@@ -1,7 +1,7 @@
-import input from '../components/input.ts';
-import button from '../components/button.ts';
-import link from '../components/link.ts';
-import nav from '../components/app-nav.ts';
+import input from '../../components/input/input.ts';
+import button from '../../components/button/button.ts';
+import link from '../../components/link/link.ts';
+import nav from '../../components/app-nav/app-nav.ts';
 
 const navOptions = {
   links: [

@@ -130,7 +130,7 @@ h2 {
   line-height: 20px;
 }
 
-@import url("login");
-@import url("register");
-@import url("profile");
-@import url("error");
+@import "login";
+@import "register";
+@import "profile";
+@import "error";

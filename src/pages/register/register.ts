@@ -1,6 +1,6 @@
-import input from '../components/input.ts';
-import button from '../components/button.ts';
-import link from '../components/link.ts';
+import input from '../../components/input/input.ts';
+import button from '../../components/button/button.ts';
+import link from '../../components/link/link.ts';
 
 const formOptions = [
   {
