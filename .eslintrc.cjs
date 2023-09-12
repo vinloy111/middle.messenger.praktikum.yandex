@@ -40,6 +40,10 @@ module.exports = {
     "class-methods-use-this": "off",
     "no-use-before-define": "off",
     "no-unused-vars": "off",
-    "max-len": ["error", { "code": 120 }]
+    "max-len": ["error", { "code": 120 }],
+    "import/prefer-default-export": "off",
+    "import/extensions": "off",
+    "import/no-unresolved": "off",
+    "no-restricted-exports": "off"
   }
 }

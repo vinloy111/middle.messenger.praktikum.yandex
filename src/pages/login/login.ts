@@ -1,39 +1,66 @@
-import input from '../../components/input/input.ts';
-import button from '../../components/button/button.ts';
-import link from '../../components/link/link.ts';
-import nav from '../../components/app-nav/app-nav.ts';
+import Block from '../../core/Block';
 
-const navOptions = {
-  links: [
-    link({ href: '/', text: 'Login' }),
-    link({ href: '/?page=register', text: 'Register' }),
-    link({ href: '/?page=chat', text: 'Chat' }),
-    link({ href: '/?page=profile', text: 'Profile' }),
-    link({ href: '/?page=404', text: '404' }),
-    link({ href: '/?page=500', text: '500' }),
-  ],
-};
+export class LoginPage extends Block {
+  constructor() {
+    super({
+      validate: {
+        login: (value: string) => {
+          if (value.length < 3 || value.length > 20) {
+            return 'Длина логина должна быть от 3 до 20 символов';
+          }
 
-const formOptions = [
-  {
-    type: 'text', id: 'login', name: 'login', label: 'Логин', error: 'Validation error',
-  },
-  {
-    type: 'password', id: 'password', name: 'password', label: 'Пароль',
-  },
-];
+          const regex = /^(?![0-9]*$)[a-zA-Z0-9-_]+$/;
+          if (!regex.test(value)) {
+            return 'Неверный формат логина';
+          }
 
-export default `
-    ${nav(navOptions)}
-    <div class="login-container">
-        <h2 class="login-container__title">Вход</h2>
-        <!-- Пока что тут нету перехода, так как обработку формы еще не делали -->
-        <form action="/?page=chat" method="post">
-            ${formOptions.map((option) => input(option)).join('')}
-            ${button({ type: 'submit', label: 'Авторизоваться' })}
-        </form>
-        <div class="not-profile-link">
-            ${link({ href: '/?page=register', text: 'Нет аккаунта?' })}
-        </div>
-    </div>
-`;
+          return '';
+        },
+        password: (value: string) => {
+          if (value.length < 8 || value.length > 40) {
+            return 'Длина пароля должна быть от 8 до 40 символов';
+          }
+
+          if (!/[A-Z]/.test(value)) {
+            return 'Пароль должен содержать хотя бы одну заглавную букву';
+          }
+
+          if (!/[0-9]/.test(value)) {
+            return 'Пароль должен содержать хотя бы одну цифру';
+          }
+
+          return '';
+        },
+      },
+      onLogin: (event: Event) => {
+        event.preventDefault();
+        const login = this.refs.login.value ? this.refs.login.value() : '';
+        const password = this.refs.password.value ? this.refs.password.value() : '';
+
+        console.log({
+          login,
+          password,
+        });
+      },
+    });
+  }
+
+  protected render(): string {
+    return (`
+            <div>
+              {{{ MainNav }}}
+              <div class="login-container">
+                <h2 class="login-container__title">Вход</h2>
+                  {{#> FormAuth}}
+                      {{{ InputField label="Login" ref="login" validate=validate.login }}}
+                      {{{ InputField type="password" label="Password" ref="password" validate=validate.password }}}
+                      {{{ Button label="Sign in" type="primary" page="list" onClick=onLogin }}}
+                      <div class="not-profile-link">
+                        {{{ Link href="/?page=register" text="Нет аккаунта?" }}}
+                      </div>
+                  {{/FormAuth}}
+              </div>
+            </div>
+        `);
+  }
+}

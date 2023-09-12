@@ -15,7 +15,11 @@ class Block {
 
   protected props: any;
 
-  protected refs: Record<string, Block> = {};
+  protected refs: {
+    [key: string]: Block & {
+      value?: () => string;
+    };
+  } = {};
 
   public children: Record<string, Block>;
 

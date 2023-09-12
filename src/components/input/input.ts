@@ -1,16 +1,32 @@
-import handlebars from 'handlebars';
+import Block from '../../core/Block';
 
-const template = `
-  <div class="input-container">
-    <div class="input-container__input">
-       <input type="{{type}}" id="{{id}}" name="{{ name }}">
-       <label for="first_name">{{ label }}</label>
-       <div class="input-container__border"></div>
-    </div>
-    {{#if error}}
-        <div class="input-container__validation">{{ error }}</div>
-    {{/if}}
-  </div>
-`;
+interface IProps {
+    onBlur: () => void;
+    onInput: () => void;
+    classes: string,
+    placeholder: string,
+}
 
-export default handlebars.compile(template);
+export class Input extends Block {
+  constructor(props: IProps) {
+    super({
+      ...props,
+      events: {
+        blur: props.onBlur || (() => {}),
+        input: props.onInput || (() => {}),
+      },
+    });
+  }
+
+  protected render(): string {
+    const { classes, placeholder, type } = this.props;
+    return (`
+            <input
+                ${type ? `type="${type}"` : ''}
+                class="${classes}"
+                placeholder="${placeholder || ''}"
+                ref="input"
+            />
+        `);
+  }
+}
