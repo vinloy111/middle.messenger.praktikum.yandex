@@ -52,9 +52,9 @@ export class LoginPage extends Block {
               <div class="login-container">
                 <h2 class="login-container__title">Вход</h2>
                   {{#> FormAuth}}
-                      {{{ InputField label="Login" ref="login" validate=validate.login }}}
-                      {{{ InputField type="password" label="Password" ref="password" validate=validate.password }}}
-                      {{{ Button label="Sign in" type="primary" page="list" onClick=onLogin }}}
+                      {{{ InputField label="Логин" ref="login" validate=validate.login }}}
+                      {{{ InputField type="password" label="Пароль" ref="password" validate=validate.password }}}
+                      {{{ Button label="Авторизоваться" type="primary" page="list" onClick=onLogin }}}
                       <div class="not-profile-link">
                         {{{ Link href="/?page=register" text="Нет аккаунта?" }}}
                       </div>

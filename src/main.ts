@@ -6,9 +6,11 @@ import { registerComponent } from './core/resgiterComponent';
 
 const pages: { [key: string]: any } = {
   login: Pages.LoginPage,
+  register: Pages.RegisterPage,
 };
 
 Handlebars.registerPartial('FormAuth', Components.FormAuth);
+Handlebars.registerPartial('FormRegister', Components.FormRegister);
 
 registerComponent('Button', Components.Button);
 registerComponent('Link', Components.Link);
@@ -24,11 +26,11 @@ function navigate(page: string) {
   currentUrl.searchParams.set('page', page);
   window.history.pushState({ page }, '', currentUrl.toString());
 
-  // if (page === 'list') {
-  //   const container = document.getElementById('app')!;
-  //   container.innerHTML = Handlebars.compile(pages[page])({});
-  //   return;
-  // }
+  if (page === 'register') {
+    const container = document.getElementById('app')!;
+    container.innerHTML = Handlebars.compile(pages[page])({});
+    return;
+  }
 
   // @ts-ignore
   const Component = pages[page];

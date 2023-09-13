@@ -45,7 +45,7 @@ export class InputField extends Block {
                         ref="input"
                         onBlur=onBlur
                         onInput=onInput
-                        type="${this.props.type}"
+                        type="${this.props.type || 'text'}"
                     }}}
                     <label for="first_name">{{ label }}</label>
                     <div class="input-container__border"></div>

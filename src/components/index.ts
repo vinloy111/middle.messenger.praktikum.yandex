@@ -5,3 +5,4 @@ export { Input } from './input';
 export { ErrorLine } from './error-line';
 export { FormAuth } from './form-auth';
 export { MainNav } from './main-nav';
+export { FormRegister } from './form-register';
