@@ -1,17 +1,14 @@
 @import "../../styles/palete";
 
-button {
+.link {
+  color: $color-primary;
   font-family: $font-family;
-  width: 100%;
-  padding: 10px;
-  background-color: $color-primary;
-  color: $color-white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
+  font-style: normal;
+  font-weight: 500;
+  line-height: 11px;
+  text-decoration: none;
 
-button:hover {
-  background-color: #0056b3;
+  &_danger {
+    color: $color-danger;
+  }
 }

@@ -8,6 +8,8 @@ const pages: { [key: string]: any } = {
   login: Pages.LoginPage,
   register: Pages.RegisterPage,
   chat: Pages.ChatPage,
+  404: Pages.NotFoundPage,
+  500: Pages.ServerErrorPage,
 };
 
 const componentsToRegister = [
