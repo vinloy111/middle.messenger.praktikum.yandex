@@ -7,17 +7,36 @@ import { registerComponent } from './core/resgiterComponent';
 const pages: { [key: string]: any } = {
   login: Pages.LoginPage,
   register: Pages.RegisterPage,
+  chat: Pages.ChatPage,
 };
 
-Handlebars.registerPartial('FormAuth', Components.FormAuth);
-Handlebars.registerPartial('FormRegister', Components.FormRegister);
+const componentsToRegister = [
+  'Button',
+  'Link',
+  'InputField',
+  'Input',
+  'ErrorLine',
+  'MainNav',
+  'ProfileButton',
+  'SearchChatInputField',
+  'ChatListItem',
+  'ChatHeader',
+  'ChatMessage',
+  'AttachInput',
+  'SendButton',
+];
 
-registerComponent('Button', Components.Button);
-registerComponent('Link', Components.Link);
-registerComponent('InputField', Components.InputField);
-registerComponent('Input', Components.Input);
-registerComponent('ErrorLine', Components.ErrorLine);
-registerComponent('MainNav', Components.MainNav);
+componentsToRegister.forEach((component) => {
+  // @ts-ignore
+  registerComponent(component, Components[component]);
+});
+
+const partialsToRegister = ['FormAuth', 'FormRegister'];
+
+partialsToRegister.forEach((partial) => {
+  // @ts-ignore
+  Handlebars.registerPartial(partial, Components[partial]);
+});
 
 function navigate(page: string) {
   const app = document.getElementById('app');
@@ -26,19 +45,15 @@ function navigate(page: string) {
   currentUrl.searchParams.set('page', page);
   window.history.pushState({ page }, '', currentUrl.toString());
 
-  if (page === 'register') {
-    const container = document.getElementById('app')!;
-    container.innerHTML = Handlebars.compile(pages[page])({});
-    return;
-  }
-
   // @ts-ignore
   const Component = pages[page];
   const component = new Component();
+
+  if (app) {
+    app.innerHTML = '';
+  }
   app?.append(component.getContent()!);
 }
-
-// document.addEventListener('DOMContentLoaded', () => navigate('login'));
 
 document.addEventListener('click', (e) => {
   // @ts-ignore
@@ -65,6 +80,9 @@ function handleRouting() {
 
   const Component = pages[page];
   const component = new Component();
+  if (app) {
+    app.innerHTML = '';
+  }
   app?.append(component.getContent()!);
 }
 

@@ -1,4 +1,4 @@
-export { default as Button } from './button';
+export { Button } from './button';
 export { Link } from './link';
 export { InputField } from './input-field';
 export { Input } from './input';
@@ -6,3 +6,10 @@ export { ErrorLine } from './error-line';
 export { FormAuth } from './form-auth';
 export { MainNav } from './main-nav';
 export { FormRegister } from './form-register';
+export { ProfileButton } from './profile-button';
+export { SearchChatInputField } from './search-chat-input-field';
+export { ChatListItem } from './chat-list-item';
+export { ChatHeader } from './chat-header';
+export { ChatMessage } from './chat-message';
+export { AttachInput } from './attach-input';
+export { SendButton } from './send-button';

@@ -1,0 +1,27 @@
+@import "../../styles/palete";
+
+.chat-header {
+  padding: 10px 0;
+  display: flex;
+  border-bottom: 1px solid $color-border-grey;
+  align-items: center;
+  margin-right: 20px;
+
+  .short-info {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &__img {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+    }
+    &__name {}
+  }
+
+  &__actions {
+    margin-right: 10px;
+  }
+}
