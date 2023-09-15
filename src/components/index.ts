@@ -13,3 +13,8 @@ export { ChatHeader } from './chat-header';
 export { ChatMessage } from './chat-message';
 export { AttachInput } from './attach-input';
 export { SendButton } from './send-button';
+export { ReturnButton } from './return-button';
+export { ProfileMainInfo } from './profile-main-info';
+export { ProfileMainInfoStatic } from './profile-main-info-static';
+export { ProfileMainInfoEdit } from './profile-main-info-edit';
+export { FormProfile } from './form-profile';

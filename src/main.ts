@@ -8,6 +8,7 @@ const pages: { [key: string]: any } = {
   login: Pages.LoginPage,
   register: Pages.RegisterPage,
   chat: Pages.ChatPage,
+  profile: Pages.ProfilePage,
   404: Pages.NotFoundPage,
   500: Pages.ServerErrorPage,
 };
@@ -26,6 +27,10 @@ const componentsToRegister = [
   'ChatMessage',
   'AttachInput',
   'SendButton',
+  'ReturnButton',
+  'ProfileMainInfo',
+  'ProfileMainInfoStatic',
+  'ProfileMainInfoEdit',
 ];
 
 componentsToRegister.forEach((component) => {
@@ -33,7 +38,7 @@ componentsToRegister.forEach((component) => {
   registerComponent(component, Components[component]);
 });
 
-const partialsToRegister = ['FormAuth', 'FormRegister'];
+const partialsToRegister = ['FormAuth', 'FormRegister', 'FormProfile'];
 
 partialsToRegister.forEach((partial) => {
   // @ts-ignore

@@ -1,36 +1,12 @@
 import Block from '../../core/Block';
+import { Validators } from '../../core';
 
 export class LoginPage extends Block {
   constructor() {
     super({
       validate: {
-        login: (value: string) => {
-          if (value.length < 3 || value.length > 20) {
-            return 'Длина логина должна быть от 3 до 20 символов';
-          }
-
-          const regex = /^(?![0-9]*$)[a-zA-Z0-9-_]+$/;
-          if (!regex.test(value)) {
-            return 'Неверный формат логина';
-          }
-
-          return '';
-        },
-        password: (value: string) => {
-          if (value.length < 8 || value.length > 40) {
-            return 'Длина пароля должна быть от 8 до 40 символов';
-          }
-
-          if (!/[A-Z]/.test(value)) {
-            return 'Пароль должен содержать хотя бы одну заглавную букву';
-          }
-
-          if (!/[0-9]/.test(value)) {
-            return 'Пароль должен содержать хотя бы одну цифру';
-          }
-
-          return '';
-        },
+        login: Validators.login,
+        password: Validators.password,
       },
       onLogin: (event: Event) => {
         event.preventDefault();
