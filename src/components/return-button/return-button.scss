@@ -1,0 +1,10 @@
+@import "../../styles/palete";
+
+.return-button {
+  cursor: pointer;
+  padding: 18px;
+  background-color: $color-light-grey;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}

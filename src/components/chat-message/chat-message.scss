@@ -1,0 +1,27 @@
+@import "../../styles/palete";
+
+.message-container {
+  display: flex;
+  width: 100%;
+
+  &_to {
+    justify-content: flex-end;
+
+    .message-container__message {
+      background: #E4EDFD;
+    }
+  }
+
+  &__message {
+    max-width: 402px;
+    background: #F8F8F8;
+    padding: 11px;
+    border-radius: 12px;
+    color: #1E1E1E;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 15px;
+    margin-top: 24px;
+  }
+}

@@ -4,33 +4,18 @@
   font-family: $font-family;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: $color-darK;
   background-color: $color-white;
-
   font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 * {
   box-sizing: border-box;
-}
-
-.link {
-  color: $color-primary;
-  font-family: $font-family;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 11px;
-  text-decoration: none;
-
-  &_danger {
-    color: $color-danger;
-  }
 }
 
 body {
@@ -55,73 +40,6 @@ h1 {
   justify-content: center;
 }
 
-button {
-  font-family: $font-family;
-  width: 100%;
-  padding: 10px;
-  background-color: $color-primary;
-  color: $color-white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-.input-container {
-  position: relative;
-  margin-bottom: 20px;
-
-  &__validation {
-    color: $color-danger;
-    font-size: 8px;
-    font-style: normal;
-    font-weight: 400;
-  }
-
-  &__input {
-    position: relative;
-  }
-
-  &__border {
-    width: 100%;
-    height: 1px;
-    background-color: $color-primary;
-  }
-
-  input {
-    width: 100%;
-    padding: 10px 10px 10px 5px;
-    background-color: transparent;
-    border: none;
-  }
-
-  input + label {
-    position: absolute;
-    left: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    transition: all 0.3s;
-    pointer-events: none;
-    color: #666;
-  }
-
-  input:focus {
-    outline: none;
-    border-color: #555;
-  }
-
-  input:focus + label {
-    top: -10px;
-    left: 5px;
-    font-size: 12px;
-    color: #555;
-  }
-}
-
 h2 {
   color: #1E1E1E;
   text-align: center;
@@ -131,8 +49,3 @@ h2 {
   font-weight: 500;
   line-height: 20px;
 }
-
-@import "login";
-@import "register";
-@import "profile";
-@import "error";

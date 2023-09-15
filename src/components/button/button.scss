@@ -1,0 +1,17 @@
+@import "../../styles/palete";
+
+.button {
+  font-family: $font-family;
+  width: 100%;
+  padding: 10px;
+  background-color: $color-primary;
+  color: $color-white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
