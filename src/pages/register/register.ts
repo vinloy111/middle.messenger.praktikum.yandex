@@ -1,5 +1,5 @@
 import Block from '../../core/Block';
-import { Validators } from '../../utils';
+import { Validators } from '../../core';
 
 export class RegisterPage extends Block {
   constructor() {

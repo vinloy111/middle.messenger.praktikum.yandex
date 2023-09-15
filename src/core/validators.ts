@@ -53,7 +53,7 @@ export function phone(value: string) {
 
 export function required(value: string) {
   if (!value.trim()) {
-    return 'Сообщение не может быть пустым';
+    return 'Обязательное поле';
   }
   return '';
 }

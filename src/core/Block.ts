@@ -15,7 +15,7 @@ class Block {
 
   protected props: any;
 
-  protected refs: {
+  public refs: {
     [key: string]: Block & {
       value?: () => string;
     };

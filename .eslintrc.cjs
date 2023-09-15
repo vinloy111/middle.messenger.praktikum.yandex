@@ -44,6 +44,9 @@ module.exports = {
     "import/prefer-default-export": "off",
     "import/extensions": "off",
     "import/no-unresolved": "off",
-    "no-restricted-exports": "off"
+    "no-restricted-exports": "off",
+    "import/newline-after-import": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "no-console": "off",
   }
 }

@@ -6,15 +6,17 @@ interface IProps {
   target: string,
   rel: string,
   text: string,
-  onClick: () => void
+  onClick: (e: Event) => void
 }
 
 export class Link extends Block {
   constructor(props: IProps) {
-    super(props);
-    this.props.events = {
-      click: this.props.onClick || (() => {}),
-    };
+    super({
+      ...props,
+      events: {
+        click: props.onClick || (() => {}),
+      },
+    });
   }
 
   protected render(): string {
@@ -30,7 +32,7 @@ export class Link extends Block {
               ${href ? `href=${href}` : ''}
               ${target ? `target=${target}` : ''}
               ${rel ? `rel=${rel}` : ''}
-              class="link ${className}">
+              class="link ${className || ''}">
               ${text}
             </a>
         `);

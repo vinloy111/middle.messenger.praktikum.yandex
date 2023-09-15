@@ -1,4 +1,4 @@
-@import "palete";
+@import "../../styles/palete";
 
 .profile {
   width: 100%;
@@ -6,15 +6,6 @@
   display: grid;
   align-items: center;
   grid-template-columns: 64px 1fr;
-
-  .return-button {
-    padding: 18px;
-    background-color: $color-light-grey;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-  }
 
   .profile-form {
     width: 100%;
