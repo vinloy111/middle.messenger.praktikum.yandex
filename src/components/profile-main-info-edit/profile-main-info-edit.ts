@@ -18,6 +18,7 @@ export class ProfileMainInfoEdit extends Block<IProps> {
     });
   }
 
+  /* eslint-disable max-len */
   protected render(): string {
     return (`
           {{#> FormProfile}}
@@ -27,7 +28,7 @@ export class ProfileMainInfoEdit extends Block<IProps> {
                   {{{ InputField name="login" label="Login" ref="login" validate=validate.login }}}
                   {{{ InputField name="first_name" label="Имя" ref="first_name" validate=validate.name }}}
                   {{{ InputField name="second_name" label="Фамилия" ref="second_name" validate=validate.name }}}
-                  {{{ InputField name="chat_name" label="Имя в чате" ref="chat_name" validate=validate.required }}}
+                  {{{ InputField name="display_name" label="Имя в чате" ref="display_name" validate=validate.required }}}
                   {{{ InputField name="phone" label="Телефон" ref="phone" validate=validate.phone }}}
               </div>
             </div>
