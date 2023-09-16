@@ -21,6 +21,7 @@ export class LoginPage extends Block {
     });
   }
 
+  /* eslint-disable max-len */
   protected render(): string {
     return (`
             <div>
@@ -28,8 +29,8 @@ export class LoginPage extends Block {
               <div class="login-container">
                 <h2 class="login-container__title">Вход</h2>
                   {{#> FormAuth}}
-                      {{{ InputField label="Логин" ref="login" validate=validate.login }}}
-                      {{{ InputField type="password" label="Пароль" ref="password" validate=validate.password }}}
+                      {{{ InputField name="login" label="Логин" ref="login" validate=validate.login }}}
+                      {{{ InputField name="password" type="password" label="Пароль" ref="password" validate=validate.password }}}
                       {{{ Button label="Авторизоваться" type="primary" page="chat" onClick=onLogin }}}
                       <div class="not-profile-link">
                         {{{ Link href="/?page=register" text="Нет аккаунта?" }}}

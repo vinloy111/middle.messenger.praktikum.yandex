@@ -1,10 +1,13 @@
 import Block from '../../core/Block';
 
 interface IProps {
-  onClick: () => void
+  onClick: () => void;
+  events: {
+    click: () => void;
+  }
 }
 
-export class SendButton extends Block {
+export class SendButton extends Block<IProps> {
   constructor(props: IProps) {
     super(props);
     this.props.events = {

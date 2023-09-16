@@ -4,7 +4,7 @@ interface IProps {
   editProfile: (e: Event) => void;
 }
 
-export class ProfilePage extends Block {
+export class ProfilePage extends Block<IProps> {
   private editMode: boolean;
 
   constructor(props: IProps) {

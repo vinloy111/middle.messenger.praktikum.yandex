@@ -7,9 +7,10 @@ interface IProps {
   label: string,
   page: string,
   onClick: () => void
+  events?: { [eventName: string]: (...args: any[]) => void; };
 }
 
-export class Button extends Block {
+export class Button extends Block<IProps> {
   constructor(props: IProps) {
     super(props);
     this.props.events = {
@@ -25,7 +26,7 @@ export class Button extends Block {
       name,
       label,
       page,
-    } = this.props as IProps;
+    } = this.props;
     return (`
             <button
               ${id ? `page=${id}` : ''}

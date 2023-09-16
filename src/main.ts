@@ -36,7 +36,7 @@ const pages: { [key: string]: any } = {
 };
 
 type ComponentMap = {
-  [key: string]: typeof Block;
+  [key: string]: typeof Block<Record<string, any>>;
 }
 
 type PartialMap = {

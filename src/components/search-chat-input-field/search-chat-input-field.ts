@@ -4,7 +4,7 @@ interface IProps {
   onClick: () => void;
 }
 
-export class SearchChatInputField extends Block {
+export class SearchChatInputField extends Block<IProps> {
   constructor(props: IProps) {
     super({
       ...props,

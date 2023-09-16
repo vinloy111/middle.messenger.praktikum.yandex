@@ -1,7 +1,11 @@
 import Block from '../../core/Block';
 import { Validators } from '../../core';
 
-export class ProfileMainInfoEdit extends Block {
+interface IProps {
+  validate: { [key: string]: () => string | null }
+}
+
+export class ProfileMainInfoEdit extends Block<IProps> {
   constructor() {
     super({
       validate: {
@@ -19,12 +23,12 @@ export class ProfileMainInfoEdit extends Block {
           {{#> FormProfile}}
             <div class="profile-form__main-info main-info">
               <div class="main-info__container">
-                  {{{ InputField label="Почта" ref="email" validate=validate.email }}}
-                  {{{ InputField label="Login" ref="login" validate=validate.login }}}
-                  {{{ InputField label="Имя" ref="first_name" validate=validate.name }}}
-                  {{{ InputField label="Фамилия" ref="second_name" validate=validate.name }}}
-                  {{{ InputField label="Имя в чате" ref="chat_name" validate=validate.required }}}
-                  {{{ InputField label="Телефон" ref="phone" validate=validate.phone }}}
+                  {{{ InputField name="email" label="Почта" ref="email" validate=validate.email }}}
+                  {{{ InputField name="login" label="Login" ref="login" validate=validate.login }}}
+                  {{{ InputField name="first_name" label="Имя" ref="first_name" validate=validate.name }}}
+                  {{{ InputField name="second_name" label="Фамилия" ref="second_name" validate=validate.name }}}
+                  {{{ InputField name="chat_name" label="Имя в чате" ref="chat_name" validate=validate.required }}}
+                  {{{ InputField name="phone" label="Телефон" ref="phone" validate=validate.phone }}}
               </div>
             </div>
           {{/ FormProfile}}
