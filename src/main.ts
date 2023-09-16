@@ -1,8 +1,30 @@
 import './styles/style.scss';
-import Handlebars from 'handlebars';
-import * as Components from './components';
+import Handlebars, { Template } from 'handlebars';
+import {
+  Button,
+  Link,
+  InputField,
+  Input,
+  ErrorLine,
+  MainNav,
+  ProfileButton,
+  SearchChatInputField,
+  ChatListItem,
+  ChatHeader,
+  ChatMessage,
+  AttachInput,
+  SendButton,
+  ReturnButton,
+  ProfileMainInfo,
+  ProfileMainInfoStatic,
+  ProfileMainInfoEdit,
+  FormAuth,
+  FormRegister,
+  FormProfile,
+} from './components';
 import * as Pages from './pages';
 import { registerComponent } from './core/resgiterComponent';
+import Block from './core/Block.ts';
 
 const pages: { [key: string]: any } = {
   login: Pages.LoginPage,
@@ -13,36 +35,46 @@ const pages: { [key: string]: any } = {
   500: Pages.ServerErrorPage,
 };
 
-const componentsToRegister = [
-  'Button',
-  'Link',
-  'InputField',
-  'Input',
-  'ErrorLine',
-  'MainNav',
-  'ProfileButton',
-  'SearchChatInputField',
-  'ChatListItem',
-  'ChatHeader',
-  'ChatMessage',
-  'AttachInput',
-  'SendButton',
-  'ReturnButton',
-  'ProfileMainInfo',
-  'ProfileMainInfoStatic',
-  'ProfileMainInfoEdit',
-];
+type ComponentMap = {
+  [key: string]: typeof Block<Record<string, any>>;
+}
 
-componentsToRegister.forEach((component) => {
-  // @ts-ignore
+type PartialMap = {
+  [key: string]: Template;
+}
+
+const Components: ComponentMap = {
+  Button,
+  Link,
+  InputField,
+  Input,
+  ErrorLine,
+  MainNav,
+  ProfileButton,
+  SearchChatInputField,
+  ChatListItem,
+  ChatHeader,
+  ChatMessage,
+  AttachInput,
+  SendButton,
+  ReturnButton,
+  ProfileMainInfo,
+  ProfileMainInfoStatic,
+  ProfileMainInfoEdit,
+};
+
+Object.keys(Components).forEach((component) => {
   registerComponent(component, Components[component]);
 });
 
-const partialsToRegister = ['FormAuth', 'FormRegister', 'FormProfile'];
+const Partials: PartialMap = {
+  FormAuth,
+  FormRegister,
+  FormProfile,
+};
 
-partialsToRegister.forEach((partial) => {
-  // @ts-ignore
-  Handlebars.registerPartial(partial, Components[partial]);
+Object.keys(Partials).forEach((partial: string) => {
+  Handlebars.registerPartial(partial, Partials[partial]);
 });
 
 function navigate(page: string) {
@@ -52,7 +84,6 @@ function navigate(page: string) {
   currentUrl.searchParams.set('page', page);
   window.history.pushState({ page }, '', currentUrl.toString());
 
-  // @ts-ignore
   const Component = pages[page];
   const component = new Component();
 
@@ -62,9 +93,9 @@ function navigate(page: string) {
   app?.append(component.getContent()!);
 }
 
-document.addEventListener('click', (e) => {
-  // @ts-ignore
-  const page = e.target.getAttribute('page');
+document.addEventListener('click', (e: MouseEvent) => {
+  const target = e.target as HTMLElement;
+  const page = target.getAttribute('page');
   if (page) {
     navigate(page);
 

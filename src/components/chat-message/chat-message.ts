@@ -6,10 +6,10 @@ interface IProps {
   isMessageTo?: boolean;
 }
 
-export class ChatMessage extends Block {
+export class ChatMessage extends Block<IProps> {
   /* eslint-disable max-len */
   protected render(): string {
-    const { classes, message, isMessageTo } = this.props as IProps;
+    const { classes, message, isMessageTo } = this.props;
 
     return (`
             <div class="message-container ${isMessageTo ? 'message-container_to' : ''} ${classes || ''}">

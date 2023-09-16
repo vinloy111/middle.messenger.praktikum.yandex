@@ -4,10 +4,10 @@ interface IProps {
   classes: string;
 }
 
-export class ChatHeader extends Block {
+export class ChatHeader extends Block<IProps> {
   /* eslint-disable max-len */
   protected render(): string {
-    const { classes } = this.props as IProps;
+    const { classes } = this.props;
     return (`
             <div class="chat-header ${classes || ''}">
               <div class="short-info">

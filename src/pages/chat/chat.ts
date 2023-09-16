@@ -27,7 +27,7 @@ export class ChatPage extends Block {
                  </div>
                  <div class="chat__footer">
                     {{{ AttachInput }}}
-                    {{{ Input classes="chat__input" placeholder="Сообщение" }}}
+                    {{{ Input name="message" classes="chat__input" placeholder="Сообщение" }}}
                     {{{ SendButton }}}
                  </div>
               </section>

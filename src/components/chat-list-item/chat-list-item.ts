@@ -5,10 +5,10 @@ interface IProps {
   active: boolean;
 }
 
-export class ChatListItem extends Block {
+export class ChatListItem extends Block<IProps> {
   /* eslint-disable max-len */
   protected render(): string {
-    const { classes, active } = this.props as IProps;
+    const { classes, active } = this.props;
 
     return (`
             <div class="chat-list-item ${active ? 'chat-list-item_active' : ''} ${classes}">

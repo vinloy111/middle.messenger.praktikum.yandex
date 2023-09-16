@@ -4,7 +4,7 @@ interface IProps {
   editProfile: (e: Event) => void;
 }
 
-export class ProfilePage extends Block {
+export class ProfilePage extends Block<IProps> {
   private editMode: boolean;
 
   constructor(props: IProps) {
@@ -19,7 +19,6 @@ export class ProfilePage extends Block {
   editProfile(event: Event) {
     event.preventDefault();
     if (this.editMode) {
-      // @ts-ignore
       const formRefs = this.refs?.profileMainInfo?.refs?.ProfileMainInfoEdit?.refs;
       if (formRefs) {
         const values = Object.entries(formRefs).reduce<Record<string, string>>((acc, [key, ref]) => {

@@ -1,6 +1,5 @@
 import express from 'express';
 import { join, resolve } from 'path';
-const __filename = new URL(import.meta.url).pathname;
 
 const app = express();
 const PORT = process.env.PORT || 3000;

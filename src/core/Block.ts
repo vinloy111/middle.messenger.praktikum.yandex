@@ -3,7 +3,7 @@ import Handlebars from 'handlebars';
 import EventBus from './EventBus.ts';
 
 // Нельзя создавать экземпляр данного класса
-class Block {
+class Block<Props extends Record<string, any> = Record<string, any>> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -13,9 +13,9 @@ class Block {
 
   public id = nanoid(6);
 
-  protected props: any;
+  protected props: Props;
 
-  protected refs: {
+  public refs: {
     [key: string]: Block & {
       value?: () => string;
     };
@@ -30,12 +30,11 @@ class Block {
   declare private readonly _meta: { props: any; };
 
   /** JSDoc
-   * @param {string} tagName
-   * @param {Object} props
    *
    * @returns {void}
+   * @param propsWithChildren
    */
-  constructor(propsWithChildren: any = {}) {
+  constructor(propsWithChildren: Record<string, any> = {}) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
@@ -69,15 +68,23 @@ class Block {
     return { props, children };
   }
 
-  _addEvents() {
-    const { events = {} } = this.props as { events: Record<string, () => void> };
+  private _addEvents() {
+    const { events = {} } = this.props;
 
     Object.keys(events).forEach((eventName) => {
       this._element?.addEventListener(eventName, events[eventName]);
     });
   }
 
-  _registerEvents(eventBus: EventBus) {
+  private _removeEvents() {
+    const { events = {} } = this.props;
+
+    Object.keys(events).forEach((eventName) => {
+      this._element?.removeEventListener(eventName, events[eventName]);
+    });
+  }
+
+  private _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -138,7 +145,7 @@ class Block {
     }
 
     this._element = newElement;
-
+    this._removeEvents();
     this._addEvents();
   }
 

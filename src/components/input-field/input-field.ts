@@ -1,11 +1,20 @@
 import Block from '../../core/Block';
 
-export class InputField extends Block {
-  constructor(props: any) {
+interface IProps {
+  onBlur: () => boolean;
+  onInput: () => void;
+  name: string;
+  type: string;
+  validate?: (value: string) => string | null;
+}
+
+export class InputField extends Block<IProps> {
+  constructor(props: IProps) {
     super({
       ...props,
       onBlur: () => this.validate(),
       onInput: () => this.onInput(),
+      name: props.name,
     });
   }
 
@@ -45,6 +54,7 @@ export class InputField extends Block {
                         ref="input"
                         onBlur=onBlur
                         onInput=onInput
+                        name=name
                         type="${this.props.type || 'text'}"
                     }}}
                     <label for="first_name">{{ label }}</label>

@@ -24,20 +24,21 @@ export class RegisterPage extends Block {
     });
   }
 
+  /* eslint-disable max-len */
   protected render(): string {
     return (`
             <div>
               <div class="register-container">
                 <h2 class="register-container__title">Регистрация</h2>
                   {{#> FormRegister}}
-                      {{{ InputField label="Имя" ref="first_name" validate=validate.name }}}
-                      {{{ InputField label="Фамилия" ref="second_name" validate=validate.name }}}
-                      {{{ InputField label="Login" ref="login" validate=validate.login }}}
-                      {{{ InputField label="Почта" ref="email" validate=validate.email }}}
-                      {{{ InputField label="Телефон" ref="phone" validate=validate.phone }}}
-                      {{{ InputField type="password" label="Password" ref="password" validate=validate.password }}}
+                      {{{ InputField name="first_name" label="Имя" ref="first_name" validate=validate.name }}}
+                      {{{ InputField name="second_name" label="Фамилия" ref="second_name" validate=validate.name }}}
+                      {{{ InputField name="login" label="Login" ref="login" validate=validate.login }}}
+                      {{{ InputField name="email" label="Почта" ref="email" validate=validate.email }}}
+                      {{{ InputField name="phone" label="Телефон" ref="phone" validate=validate.phone }}}
+                      {{{ InputField name="password" type="password" label="Password" ref="password" validate=validate.password }}}
                       {{{ InputField
-                          type="password" label="Пароль (еще раз)" ref="password_confirm" validate=validate.password
+                          name="password_confirm" type="password" label="Пароль (еще раз)" ref="password_confirm" validate=validate.password
                       }}}
                       {{{ Button label="Зарегистрироваться" type="primary" page="chat" onClick=onRegister }}}
                       <div class="login-link">

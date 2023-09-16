@@ -5,9 +5,11 @@ interface IProps {
     onInput: () => void;
     classes: string,
     placeholder: string,
+    type: string,
+    name: string,
 }
 
-export class Input extends Block {
+export class Input extends Block<IProps> {
   constructor(props: IProps) {
     super({
       ...props,
@@ -19,11 +21,14 @@ export class Input extends Block {
   }
 
   protected render(): string {
-    const { classes, placeholder, type } = this.props;
+    const {
+      classes, placeholder, type, name,
+    } = this.props;
     return (`
             <input
                 ${type ? `type="${type}"` : ''}
                 class="${classes}"
+                ${name ? `name="${name}"` : ''}
                 placeholder="${placeholder || ''}"
                 ref="input"
             />

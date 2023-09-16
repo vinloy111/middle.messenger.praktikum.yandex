@@ -9,7 +9,7 @@ interface IProps {
   onClick: (e: Event) => void
 }
 
-export class Link extends Block {
+export class Link extends Block<IProps> {
   constructor(props: IProps) {
     super({
       ...props,

@@ -4,7 +4,7 @@ interface IProps {
   editMode: boolean;
 }
 
-export class ProfileMainInfo extends Block {
+export class ProfileMainInfo extends Block<IProps> {
   constructor(props: IProps) {
     super({
       ...props,
