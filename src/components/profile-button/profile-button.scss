@@ -1,0 +1,11 @@
+@import "../../styles/palete";
+
+.profile-button-container {
+  cursor: pointer;
+  font-size: 12px;
+  color: $color-grey;
+  display: flex;
+  justify-content: end;
+  align-items: baseline;
+  gap: 8px;
+}
