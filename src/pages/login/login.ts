@@ -1,5 +1,7 @@
 import Block from '../../core/Block';
 import { Validators } from '../../core';
+import { signin } from '../../services/auth.ts';
+import { LoginRequestData } from '../../models/login-request-data.ts';
 
 export class LoginPage extends Block {
   constructor() {
@@ -10,13 +12,13 @@ export class LoginPage extends Block {
       },
       onLogin: (event: Event) => {
         event.preventDefault();
-        const login = this.refs.login.value ? this.refs.login.value() : '';
-        const password = this.refs.password.value ? this.refs.password.value() : '';
 
-        console.log({
-          login,
-          password,
-        });
+        const newUser: LoginRequestData = {
+          login: this.refs.login?.value?.()!,
+          password: this.refs.password?.value?.()!,
+        };
+
+        signin(newUser).catch((error) => console.error(error));
       },
     });
   }

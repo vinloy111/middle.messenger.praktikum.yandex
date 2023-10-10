@@ -7,7 +7,7 @@ const absolutePath = resolve('dist');
 
 app.use(express.static(join(absolutePath)));
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
   const indexPath = join(absolutePath, 'index.html');
   res.sendFile(indexPath);
 });

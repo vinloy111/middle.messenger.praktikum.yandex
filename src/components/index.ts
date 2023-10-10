@@ -18,3 +18,4 @@ export { ProfileMainInfo } from './profile-main-info';
 export { ProfileMainInfoStatic } from './profile-main-info-static';
 export { ProfileMainInfoEdit } from './profile-main-info-edit';
 export { FormProfile } from './form-profile';
+export { ProfilePasswordEdit } from './profile-password-edit';

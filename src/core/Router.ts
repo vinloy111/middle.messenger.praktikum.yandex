@@ -8,14 +8,11 @@ export class Router {
 
   private history: History;
 
-  private _currentRoute: Route | null;
-
   private _rootQuery: string;
 
   constructor(rootQuery: string) {
     this.routes = [];
     this.history = window.history;
-    this._currentRoute = null;
     this._rootQuery = rootQuery;
   }
 
@@ -43,13 +40,7 @@ export class Router {
   _onRoute(pathname: string) {
     const route = this.getRoute(pathname);
 
-    // Only leave the current route if it's different from the new route
-    if (this._currentRoute && this._currentRoute !== route) {
-      this._currentRoute.leave();
-    }
-
     if (route) {
-      this._currentRoute = route;
       route.navigate(pathname);
     }
   }
