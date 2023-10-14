@@ -7,6 +7,7 @@ export type AppState = {
   user: User | null,
   isOpenDialogChat: boolean,
   isOpenDialogAddUser: boolean,
+  isOpenDialogDeleteUser: boolean,
   chats: Chat[],
   activeChatId: number | null,
   activeChat: Chat | null,

@@ -48,9 +48,8 @@ const addUser = async (userId: number) => {
   }
 };
 
-const deleteUser = async () => {
+const deleteUser = async (userId: number) => {
   const chatId = window.store.getState().activeChatId;
-  const userId = window.store.getState().user?.id;
   if (!chatId || !userId) {
     return;
   }

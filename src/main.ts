@@ -26,6 +26,7 @@ import {
   Dialog,
   ChatMessages,
   DialogAddUser,
+  DialogDeleteUser,
 } from './components';
 import * as Pages from './pages';
 import { registerComponent } from './core/resgiterComponent';
@@ -53,6 +54,7 @@ const initState: AppState = {
   activeChatId: null,
   messages: [],
   isOpenDialogAddUser: false,
+  isOpenDialogDeleteUser: false,
 };
 
 window.store = new Store<AppState>(initState);
@@ -86,6 +88,7 @@ const Components: ComponentMap = {
   ProfilePasswordEdit,
   DialogCreateChat,
   DialogAddUser,
+  DialogDeleteUser,
   Dialog,
   ChatMessages,
 };

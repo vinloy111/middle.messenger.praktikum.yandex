@@ -28,17 +28,21 @@ class WebSocketService {
     });
 
     this.socket.addEventListener('message', (event) => {
-      const preparedData = JSON.parse(event.data);
-      const prevData = window.store.getState().messages;
+      try {
+        const preparedData = JSON.parse(event.data);
+        const prevData = window.store.getState().messages;
 
-      if (Array.isArray(preparedData)) {
-        window.store.set({
-          messages: prevData
-            ? [...preparedData, ...prevData]
-            : preparedData,
-        });
-      } else {
-        window.store.set({ messages: prevData ? [preparedData, ...prevData] : preparedData });
+        if (Array.isArray(preparedData)) {
+          window.store.set({
+            messages: prevData
+              ? [...preparedData, ...prevData]
+              : preparedData,
+          });
+        } else {
+          window.store.set({ messages: prevData ? [preparedData, ...prevData] : preparedData });
+        }
+      } catch (e) {
+        console.error('Parse data error: ', e);
       }
     });
 
