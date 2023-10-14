@@ -7,6 +7,7 @@ interface IProps {
     placeholder: string,
     type: string,
     name: string,
+    value: string,
 }
 
 export class Input extends Block<IProps> {
@@ -22,13 +23,14 @@ export class Input extends Block<IProps> {
 
   protected render(): string {
     const {
-      classes, placeholder, type, name,
+      classes, placeholder, type, name, value,
     } = this.props;
     return (`
             <input
                 ${type ? `type="${type}"` : ''}
                 class="${classes}"
                 ${name ? `name="${name}"` : ''}
+                ${value ? `value="${value}"` : ''}
                 placeholder="${placeholder || ''}"
                 ref="input"
             />

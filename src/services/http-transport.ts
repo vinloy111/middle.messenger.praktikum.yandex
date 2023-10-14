@@ -1,10 +1,13 @@
+import constants from '../constants.ts';
+
 type HTTPMethod = (url: string, options?: Options) => Promise<XMLHttpRequest>;
 
 export interface Options {
   timeout?: number;
   method?: string;
   headers?: { [key: string]: string };
-  data?: { [key: string]: string };
+  data?: { [key: string]: string | any };
+  isFile?: boolean;
 }
 
 const METHODS = {
@@ -22,6 +25,12 @@ function queryStringify(data: { [key: string]: string }) {
 }
 
 export class HTTPTransport {
+  private apiUrl: string = '';
+
+  constructor(apiPath: string) {
+    this.apiUrl = `${constants.HOST}${apiPath}`;
+  }
+
   get: HTTPMethod = (url, options = {}) => {
     if (options.data) {
       url += queryStringify(options.data);
@@ -31,7 +40,10 @@ export class HTTPTransport {
 
   post: HTTPMethod = (url, options = {}) => this.request(url, { ...options, method: METHODS.POST }, options.timeout);
 
-  put: HTTPMethod = (url, options = {}) => this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
+  put: HTTPMethod = (
+    url,
+    options = {},
+  ) => this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
 
   delete: HTTPMethod = (
     url,
@@ -39,15 +51,25 @@ export class HTTPTransport {
   ) => this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
 
   request = (url: string, options: Options, timeout = 5000): Promise<XMLHttpRequest> => {
-    const { method, data, headers = {} } = options;
+    const {
+      method, data, headers = {}, isFile = false,
+    } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      xhr.open(method || METHODS.GET, url);
+      xhr.open(method || METHODS.GET, this.apiUrl + url);
+      xhr.withCredentials = true;
 
       Object.entries(headers).forEach(([key, value]) => {
         xhr.setRequestHeader(key, value);
       });
+
+      if (
+        [METHODS.POST, METHODS.PUT, METHODS.DELETE].includes(method as string)
+        && !headers['Content-Type']
+        && !isFile) {
+        xhr.setRequestHeader('Content-Type', 'application/json');
+      }
 
       xhr.timeout = timeout;
 
@@ -66,7 +88,7 @@ export class HTTPTransport {
       if (method === METHODS.GET || !data) {
         xhr.send();
       } else {
-        xhr.send(JSON.stringify(data));
+        xhr.send(!isFile ? JSON.stringify(data) : data as File);
       }
     });
   };

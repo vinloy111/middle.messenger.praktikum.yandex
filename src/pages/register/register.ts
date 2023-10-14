@@ -1,5 +1,7 @@
 import Block from '../../core/Block';
 import { Validators } from '../../core';
+import { CreateUser } from '../../models/user.ts';
+import { signup } from '../../services/auth.ts';
 
 export class RegisterPage extends Block {
   constructor() {
@@ -14,12 +16,16 @@ export class RegisterPage extends Block {
       onRegister: (event: Event) => {
         event.preventDefault();
 
-        const values = Object.entries(this.refs).reduce<Record<string, string>>((acc, [key, ref]) => {
-          acc[key] = ref.value ? ref.value() : '';
-          return acc;
-        }, {});
+        const newUser: CreateUser = {
+          login: this.refs.login?.value?.()!,
+          first_name: this.refs.first_name?.value?.()!,
+          second_name: this.refs.second_name?.value?.()!,
+          email: this.refs.email?.value?.()!,
+          phone: this.refs.phone?.value?.()!,
+          password: this.refs.password?.value?.()!,
+        };
 
-        console.log(values);
+        signup(newUser).catch((error) => console.error(error));
       },
     });
   }
@@ -40,9 +46,9 @@ export class RegisterPage extends Block {
                       {{{ InputField
                           name="password_confirm" type="password" label="Пароль (еще раз)" ref="password_confirm" validate=validate.password
                       }}}
-                      {{{ Button label="Зарегистрироваться" type="primary" page="chat" onClick=onRegister }}}
+                      {{{ Button label="Зарегистрироваться" type="primary" onClick=onRegister }}}
                       <div class="login-link">
-                        {{{ Link href="/?page=login" text="Войти" }}}
+                        {{{ Link href="/login" text="Войти" }}}
                       </div>
                   {{/FormRegister}}
               </div>

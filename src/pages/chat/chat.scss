@@ -56,6 +56,7 @@
     overflow-y: auto;
     padding-right: 20px;
     padding-bottom: 20px;
+    max-height: calc(100vh - 134px);
   }
 
   &__container {

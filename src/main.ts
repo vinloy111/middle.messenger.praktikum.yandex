@@ -21,11 +21,41 @@ import {
   FormAuth,
   FormRegister,
   FormProfile,
+  ProfilePasswordEdit,
+  DialogCreateChat,
+  Dialog,
+  ChatMessages,
+  DialogAddUser,
 } from './components';
 import * as Pages from './pages';
 import { registerComponent } from './core/resgiterComponent';
 import Block from './core/Block.ts';
 import { Router } from './core/Router.ts';
+import { Store } from './core/Store.ts';
+import { AppState } from './models/app-state.ts';
+import { initApp } from './services/initApp.ts';
+
+declare global {
+  interface Window {
+    store: Store<AppState>;
+    router: Router;
+  }
+
+  type Nullable<T> = T | null;
+}
+
+const initState: AppState = {
+  error: null,
+  user: null,
+  isOpenDialogChat: false,
+  chats: [],
+  activeChat: null,
+  activeChatId: null,
+  messages: [],
+  isOpenDialogAddUser: false,
+};
+
+window.store = new Store<AppState>(initState);
 
 type ComponentMap = {
   [key: string]: typeof Block<Record<string, any>>;
@@ -53,6 +83,11 @@ const Components: ComponentMap = {
   ProfileMainInfo,
   ProfileMainInfoStatic,
   ProfileMainInfoEdit,
+  ProfilePasswordEdit,
+  DialogCreateChat,
+  DialogAddUser,
+  Dialog,
+  ChatMessages,
 };
 
 Object.keys(Components).forEach((component) => {
@@ -70,11 +105,12 @@ Object.keys(Partials).forEach((partial: string) => {
 });
 
 const router = new Router('#app');
+window.router = router;
 router
-  .use('/login', Pages.LoginPage)
-  .use('/register', Pages.RegisterPage)
-  .use('/chat', Pages.ChatPage)
-  .use('/profile', Pages.ProfilePage)
+  .use('/', Pages.LoginPage)
+  .use('/sign-up', Pages.RegisterPage)
+  .use('/messenger', Pages.ChatPage)
+  .use('/settings', Pages.ProfilePage)
   .use('/404', Pages.NotFoundPage)
   .use('/500', Pages.ServerErrorPage);
 
@@ -89,3 +125,5 @@ document.addEventListener('click', (e) => {
     e.stopImmediatePropagation();
   }
 });
+
+document.addEventListener('DOMContentLoaded', () => initApp());

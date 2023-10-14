@@ -1,3 +1,5 @@
 import './profile.scss';
 
-export { ProfilePage } from './profile.ts';
+import ProfilePage from './profile';
+
+export default ProfilePage;

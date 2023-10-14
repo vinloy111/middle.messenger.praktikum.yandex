@@ -1,7 +1,9 @@
 import Block from '../../core/Block';
+import { User } from '../../models/user.ts';
 
 interface IProps {
   editMode: boolean;
+  user: User;
 }
 
 export class ProfileMainInfo extends Block<IProps> {
@@ -14,6 +16,9 @@ export class ProfileMainInfo extends Block<IProps> {
 
   protected render(): string {
     const { editMode } = this.props as IProps;
-    return editMode ? ('{{{ ProfileMainInfoEdit ref="ProfileMainInfoEdit" }}}') : ('{{{ ProfileMainInfoStatic }}}');
+
+    return editMode
+      ? ('{{{ ProfileMainInfoEdit user=user ref="ProfileMainInfoEdit" }}}')
+      : ('{{{ ProfileMainInfoStatic user=user ref="ProfileMainInfoStatic" }}}');
   }
 }
