@@ -6,7 +6,9 @@ interface IProps {
   classes: string;
   value: Chat;
   openAddUserDialog: () => void;
+  openDeleteUserDialog: () => void;
   closeAddUserDialog: () => void;
+  closeDeleteUserDialog: () => void;
   onAddUser: () => void;
   onLeave: () => void;
 }
@@ -17,6 +19,8 @@ export class ChatHeader extends Block<IProps> {
       ...props,
       openAddUserDialog: () => window.store.set({ isOpenDialogAddUser: true }),
       closeAddUserDialog: () => window.store.set({ isOpenDialogAddUser: false }),
+      openDeleteUserDialog: () => window.store.set({ isOpenDialogDeleteUser: true }),
+      closeDeleteUserDialog: () => window.store.set({ isOpenDialogDeleteUser: false }),
       onAddUser: () => {
         const userId: number = +(this.refs.addUser as any).getChatTitle();
         if (!userId) {
@@ -28,8 +32,22 @@ export class ChatHeader extends Block<IProps> {
 
         window.store.set({ isOpenDialogChat: false });
       },
+      onDeleteUser: () => {
+        const userId: number = +(this.refs.deleteUser as any).getUserId();
+        if (!userId) {
+          window.store.set({ isOpenDialogDeleteUser: false });
+          return;
+        }
+
+        deleteUser(userId).catch((error) => console.error(error));
+
+        window.store.set({ isOpenDialogDeleteUser: false });
+      },
       onLeave: () => {
-        deleteUser().catch((error) => console.error(error));
+        const userId = window.store.getState().user?.id;
+        if (userId) {
+          deleteUser(userId).catch((error) => console.error(error));
+        }
       },
     });
   }
@@ -45,10 +63,12 @@ export class ChatHeader extends Block<IProps> {
               </div>
               <div class="chat-header__actions">
                 {{{ Button type="primary" label="Добавить пользователя" onClick=openAddUserDialog}}}
+                {{{ Button type="primary" label="Убрать пользователя" onClick=openDeleteUserDialog}}}
                 {{{ Button type="primary" label="Выйти из чата" onClick=onLeave}}}
               </div>
 
               {{{ DialogAddUser onSave=onAddUser onClose=closeAddUserDialog ref="addUser"}}}
+              {{{ DialogDeleteUser onSave=onDeleteUser onClose=closeDeleteUserDialog ref="deleteUser"}}}
              </div>
         `);
   }

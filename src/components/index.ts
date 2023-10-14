@@ -21,5 +21,6 @@ export { FormProfile } from './form-profile';
 export { ProfilePasswordEdit } from './profile-password-edit';
 export { default as DialogCreateChat } from './dialog-create-chat';
 export { default as DialogAddUser } from './dialog-add-user';
+export { default as DialogDeleteUser } from './dialog-delete-user';
 export { Dialog } from './dialog';
 export { default as ChatMessages } from './chat-messages';
