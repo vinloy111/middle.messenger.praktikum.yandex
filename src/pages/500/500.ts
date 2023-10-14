@@ -6,7 +6,7 @@ export class ServerErrorPage extends Block {
             <div class="error">
               <h1 class="error__status">500</h1>
               <p class="error__text">Мы уже фиксим</p>
-              {{{ Link href="/?page=chat" text="Назад к чатам" }}}
+              {{{ Link href="/messenger" text="Назад к чатам" }}}
             </div>
         `);
   }

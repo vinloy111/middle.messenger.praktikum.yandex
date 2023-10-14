@@ -16,16 +16,17 @@ export const transformUser = (data: UserDTO): User => ({
   firstName: data.first_name,
   secondName: data.second_name,
   displayName: data.display_name,
-  avatar: buildPathToResource(data.avatar) || '',
+  avatar: buildPathToResource(data.avatar) || constants.NOT_PHOTO_URL,
   phone: data.phone,
   email: data.email,
 });
 
 export const transformChats = (data: ChatDTO[]): Chat[] => data.map((chat) => ({
-  avatar: buildPathToResource(chat.avatar),
+  avatar: buildPathToResource(chat.avatar) || constants.NOT_PHOTO_URL,
   id: chat.id,
   title: chat.title,
   unreadCount: chat.unread_count,
+  active: false,
   lastMessage: chat.last_message ? {
     content: chat.last_message.content,
     time: chat.last_message.time,

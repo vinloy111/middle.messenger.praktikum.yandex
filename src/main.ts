@@ -22,6 +22,10 @@ import {
   FormRegister,
   FormProfile,
   ProfilePasswordEdit,
+  DialogCreateChat,
+  Dialog,
+  ChatMessages,
+  DialogAddUser,
 } from './components';
 import * as Pages from './pages';
 import { registerComponent } from './core/resgiterComponent';
@@ -45,6 +49,10 @@ const initState: AppState = {
   user: null,
   isOpenDialogChat: false,
   chats: [],
+  activeChat: null,
+  activeChatId: null,
+  messages: [],
+  isOpenDialogAddUser: false,
 };
 
 window.store = new Store<AppState>(initState);
@@ -76,6 +84,10 @@ const Components: ComponentMap = {
   ProfileMainInfoStatic,
   ProfileMainInfoEdit,
   ProfilePasswordEdit,
+  DialogCreateChat,
+  DialogAddUser,
+  Dialog,
+  ChatMessages,
 };
 
 Object.keys(Components).forEach((component) => {

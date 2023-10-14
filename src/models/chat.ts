@@ -5,6 +5,7 @@ export type Chat = {
   title: string,
   // eslint-disable-next-line no-undef
   avatar: Nullable<string>,
+  active: boolean,
   unreadCount: number,
   lastMessage: LastMessage | null
 }

@@ -35,7 +35,7 @@ export class LoginPage extends Block {
                       {{{ InputField name="password" type="password" label="Пароль" ref="password" validate=validate.password }}}
                       {{{ Button label="Авторизоваться" type="primary" page="chat" onClick=onLogin }}}
                       <div class="not-profile-link">
-                        {{{ Link href="/?page=register" text="Нет аккаунта?" }}}
+                        {{{ Link href="/sign-up" text="Нет аккаунта?" }}}
                       </div>
                   {{/FormAuth}}
               </div>

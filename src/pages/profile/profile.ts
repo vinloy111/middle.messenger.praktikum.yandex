@@ -92,7 +92,7 @@ export class ProfilePage extends Block<IProps> {
 
   /* eslint-disable max-len */
   protected render(): string {
-    const { login, avatar } = this.props?.user || {};
+    const { login, avatar: userAvatar } = this.props?.user || {};
     return (`
             <div class="profile">
                 {{{ ReturnButton }}}
@@ -100,7 +100,7 @@ export class ProfilePage extends Block<IProps> {
                     <div class="profile-form__container">
                       <div class="profile-form-header">
                           <div>
-                              ${avatar ? `<img class="profile-form-header__img" src="${avatar}" alt="profile image">` : ''}
+                              ${userAvatar ? `<img class="profile-form-header__img" src="${userAvatar}" alt="profile image">` : ''}
                               <div>
                                 {{{ Input
                                     ref="avatarInput"

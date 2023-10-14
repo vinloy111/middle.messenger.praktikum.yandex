@@ -61,3 +61,14 @@ export type ProfileDTO = {
   email: string,
   phone: string
 }
+
+export type Message = {
+  chat_id: number,
+  content: string,
+  file: File,
+  id: number,
+  is_read: boolean,
+  time: Date | string,
+  type: string,
+  user_id: string
+}

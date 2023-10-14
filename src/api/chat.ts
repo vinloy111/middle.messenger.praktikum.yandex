@@ -11,4 +11,16 @@ export default class ChatApi {
   async getChats(): Promise<XMLHttpRequest> {
     return chatApi.get('');
   }
+
+  async getToken(chatId: number): Promise<XMLHttpRequest> {
+    return chatApi.post(`/token/${chatId}`);
+  }
+
+  async addUser(userId: number, chatId: number): Promise<XMLHttpRequest> {
+    return chatApi.put('/users', { data: { users: [userId], chatId } });
+  }
+
+  async deleteUser(userId: number, chatId: number): Promise<XMLHttpRequest> {
+    return chatApi.delete('/users', { data: { users: [userId], chatId } });
+  }
 }
