@@ -4,6 +4,7 @@
     "version": "0.0.0",
     "type": "module",
     "scripts": {
+        "prepare": "husky install",
         "lint": "eslint src/**/*.{ts,tsx,js,jsx}",
         "lint:css": "stylelint src/**/*.scss",
         "dev": "vite --open",
@@ -47,18 +48,7 @@
     },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "npm run lint && npm test"
     }
-  },
-  "lint-staged": {
-    "*.{ts,tsx,js,jsx}": [
-      "eslint --fix",
-      "npm run test",
-      "git add"
-    ],
-    "*.scss": [
-      "stylelint --fix",
-      "git add"
-    ]
   }
 }
