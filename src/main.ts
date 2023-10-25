@@ -21,19 +21,43 @@ import {
   FormAuth,
   FormRegister,
   FormProfile,
+  ProfilePasswordEdit,
+  DialogCreateChat,
+  Dialog,
+  ChatMessages,
+  DialogAddUser,
+  DialogDeleteUser,
 } from './components';
 import * as Pages from './pages';
 import { registerComponent } from './core/resgiterComponent';
 import Block from './core/Block.ts';
+import { Router } from './core/Router.ts';
+import { Store } from './core/Store.ts';
+import { AppState } from './models/app-state.ts';
+import { initApp } from './services/initApp.ts';
 
-const pages: { [key: string]: any } = {
-  login: Pages.LoginPage,
-  register: Pages.RegisterPage,
-  chat: Pages.ChatPage,
-  profile: Pages.ProfilePage,
-  404: Pages.NotFoundPage,
-  500: Pages.ServerErrorPage,
+declare global {
+  interface Window {
+    store: Store<AppState>;
+    router: Router;
+  }
+
+  type Nullable<T> = T | null;
+}
+
+const initState: AppState = {
+  error: null,
+  user: null,
+  isOpenDialogChat: false,
+  chats: [],
+  activeChat: null,
+  activeChatId: null,
+  messages: [],
+  isOpenDialogAddUser: false,
+  isOpenDialogDeleteUser: false,
 };
+
+window.store = new Store<AppState>(initState);
 
 type ComponentMap = {
   [key: string]: typeof Block<Record<string, any>>;
@@ -61,6 +85,12 @@ const Components: ComponentMap = {
   ProfileMainInfo,
   ProfileMainInfoStatic,
   ProfileMainInfoEdit,
+  ProfilePasswordEdit,
+  DialogCreateChat,
+  DialogAddUser,
+  DialogDeleteUser,
+  Dialog,
+  ChatMessages,
 };
 
 Object.keys(Components).forEach((component) => {
@@ -77,52 +107,26 @@ Object.keys(Partials).forEach((partial: string) => {
   Handlebars.registerPartial(partial, Partials[partial]);
 });
 
-function navigate(page: string) {
-  const app = document.getElementById('app');
+const router = new Router('#app');
+window.router = router;
+router
+  .use('/', Pages.LoginPage)
+  .use('/sign-up', Pages.RegisterPage)
+  .use('/messenger', Pages.ChatPage)
+  .use('/settings', Pages.ProfilePage)
+  .use('/404', Pages.NotFoundPage)
+  .use('/500', Pages.ServerErrorPage);
 
-  const currentUrl = new URL(window.location.href);
-  currentUrl.searchParams.set('page', page);
-  window.history.pushState({ page }, '', currentUrl.toString());
+router.start();
 
-  const Component = pages[page];
-  const component = new Component();
-
-  if (app) {
-    app.innerHTML = '';
-  }
-  app?.append(component.getContent()!);
-}
-
-document.addEventListener('click', (e: MouseEvent) => {
+document.addEventListener('click', (e) => {
   const target = e.target as HTMLElement;
   const page = target.getAttribute('page');
   if (page) {
-    navigate(page);
-
+    router.go(page);
     e.preventDefault();
     e.stopImmediatePropagation();
   }
 });
 
-function handleRouting() {
-  // Использую queryParams так как netlify умееть только dist запускать у себя
-  // и соответственно маршруты другие нельзя в нем указать по примеру /register, /profile etc.
-  const queryParams = new URLSearchParams(window.location.search);
-  let page: string = queryParams.get('page') as any;
-
-  const app: Element = document.querySelector('#app') as any;
-
-  if (!pages[page]) {
-    page = window.location.pathname === '/' && !page ? 'login' : '404';
-  }
-
-  const Component = pages[page];
-  const component = new Component();
-  if (app) {
-    app.innerHTML = '';
-  }
-  app?.append(component.getContent()!);
-}
-
-window.addEventListener('load', handleRouting);
-window.addEventListener('popstate', handleRouting);
+document.addEventListener('DOMContentLoaded', () => initApp());

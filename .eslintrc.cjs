@@ -48,5 +48,8 @@ module.exports = {
     "import/newline-after-import": "off",
     "@typescript-eslint/no-unused-vars": "off",
     "no-console": "off",
+    "no-restricted-syntax": "off",
+    "no-continue": "off",
+    "@typescript-eslint/no-non-null-asserted-optional-chain": "off"
   }
 }

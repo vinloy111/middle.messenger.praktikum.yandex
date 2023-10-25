@@ -18,5 +18,5 @@
     "sourceMap": true,
     "strictNullChecks": true
   },
-  "include": ["src", "typings/hbs.d.ts"]
+  "include": ["src", "typings/hbs.d.ts", "typings/app.d.ts"]
 }

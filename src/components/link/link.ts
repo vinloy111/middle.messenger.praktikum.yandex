@@ -14,7 +14,10 @@ export class Link extends Block<IProps> {
     super({
       ...props,
       events: {
-        click: props.onClick || (() => {}),
+        click: props.onClick || ((e: Event) => {
+          e.preventDefault();
+          window.router.go(this.props.href);
+        }),
       },
     });
   }
